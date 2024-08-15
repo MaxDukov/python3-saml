@@ -837,7 +837,7 @@ class OneLogin_Saml2_Utils(object):
                 for cert in multicerts:
                     if OneLogin_Saml2_Utils.validate_node_sign(signature_node, elem, cert, fingerprint, fingerprintalg, validatecert, False, raise_exceptions=False):
                         return True
-                raise OneLogin_Saml2_ValidationError("Signature validation failed. SAML Response rejected.", OneLogin_Saml2_ValidationError.INVALID_SIGNATURE)
+                raise OneLogin_Saml2_ValidationError("Signature validation failed. SAML Response rejected. utils, line 840", OneLogin_Saml2_ValidationError.INVALID_SIGNATURE)
         else:
             raise OneLogin_Saml2_ValidationError("Expected exactly one signature node; got {}.".format(len(signature_nodes)), OneLogin_Saml2_ValidationError.WRONG_NUMBER_OF_SIGNATURES)
 
@@ -954,7 +954,7 @@ class OneLogin_Saml2_Utils(object):
         try:
             dsig_ctx.verify(signature_node)
         except Exception as err:
-            raise OneLogin_Saml2_ValidationError("Signature validation failed. SAML Response rejected. %s", OneLogin_Saml2_ValidationError.INVALID_SIGNATURE, str(err))
+            raise OneLogin_Saml2_ValidationError("Signature validation failed. utils, line 957. SAML Response rejected. %s", OneLogin_Saml2_ValidationError.INVALID_SIGNATURE, str(err))
 
         return True
 
