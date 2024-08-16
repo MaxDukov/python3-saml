@@ -677,12 +677,12 @@ class OneLogin_Saml2_Auth(object):
                 for cert in idp_data["x509certMulti"]["signing"]:
                     if OneLogin_Saml2_Utils.validate_binary_sign(signed_query, OneLogin_Saml2_Utils.b64decode(signature), cert, sign_alg):
                         return True
-                raise OneLogin_Saml2_ValidationError("Signature validation failed. %s rejected" % saml_type, OneLogin_Saml2_ValidationError.INVALID_SIGNATURE)
+                raise OneLogin_Saml2_ValidationError("Signature validation failed. auth. line 680 %s rejected" % saml_type, OneLogin_Saml2_ValidationError.INVALID_SIGNATURE)
             else:
                 cert = self.get_settings().get_idp_cert()
 
                 if not OneLogin_Saml2_Utils.validate_binary_sign(signed_query, OneLogin_Saml2_Utils.b64decode(signature), cert, sign_alg, self._settings.is_debug_active()):
-                    raise OneLogin_Saml2_ValidationError("Signature validation failed. %s rejected" % saml_type, OneLogin_Saml2_ValidationError.INVALID_SIGNATURE)
+                    raise OneLogin_Saml2_ValidationError("Signature validation failed. auth, line 685 %s rejected" % saml_type, OneLogin_Saml2_ValidationError.INVALID_SIGNATURE)
             return True
         except Exception as e:
             self._error_reason = str(e)
